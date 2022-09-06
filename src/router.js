@@ -20,7 +20,7 @@ const router = createRouter({
         }, {
             path: '/form', name: 'Form', component: FormView
         }, {
-            path: '/loading-dialog', name: 'LoadingDialog', component: LoadingDialogView
+            path: '/loading-dialog', name: 'LoadingDialog.vue', component: LoadingDialogView
         }, {
             path: '/profile-popup', name: 'ProfilePopup', component: profilePopupView
         },
