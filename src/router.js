@@ -6,6 +6,8 @@ import ErrorView from "@/views/ErrorView.vue";
 import FormView from "@/views/FormView.vue";
 import LoadingDialogView from "@/views/LoadingDialogView.vue";
 import profilePopupView from "@/views/ProfilePopupView.vue";
+import ClientsideDatatable from "@/views/ClientsideDatatable.vue";
+import ServersideDatatable from "@/views/ServersideDatatable.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL), routes: [{
@@ -13,9 +15,17 @@ const router = createRouter({
     },
         {
             path: '/dashboard', name: 'Dashboard', component: DashboardView
-        }, {
+        },
+        {
             path: '/datatable', name: 'Datatable', component: DatatableView
-        }, {
+        },
+        {
+            path: '/datatable/clientside', name: 'ClientsideDatatable', component: ClientsideDatatable
+        },
+        {
+            path: '/datatable/serverside', name: 'ServersideDatatable', component: ServersideDatatable
+        }
+        , {
             path: '/error-log', name: 'ErrorLog', component: ErrorView
         }, {
             path: '/form', name: 'Form', component: FormView

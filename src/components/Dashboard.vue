@@ -1,39 +1,38 @@
 <template>
   <v-app>
-    <v-app-bar app dark color="primary" elevate-on-scroll>
+    <v-app-bar color="primary" style="transform:none;">
+
       <v-app-bar-nav-icon @click="drawer = !drawer"/>
 
       <v-card-title>Sparko Sol</v-card-title>
       <v-spacer/>
 
-      <!--      <profile-popup/>-->
+      <ProfilePopup class="mr-2"/>
+
     </v-app-bar>
     <v-main class="main-bg">
       <v-container>
         <router-view/>
       </v-container>
     </v-main>
-    <v-navigation-drawer v-model="drawer" app>
-      <img src="../assets/logo.png" alt="logo" class="logo" height="70"/>
+    <v-navigation-drawer class="drawer" v-model="drawer" app>
+      <img src="../assets/logo.png" alt="logo" class="logo my-5" height="30"/>
       <v-divider/>
       <template :key="key" v-for="(route, key) in routes">
         <v-list-item
             v-if="!route.isDivider"
             class="route"
-            color="#508eca"
             active-class="route--active"
             exact
             dense
             :to="route.to"
         >
-          <v-list-item-media>
-            <v-icon icon="mdi-account-group"/>
-          </v-list-item-media>
+          <v-icon :icon="route.icon"/>
           <v-list-item-title v-text="route.title"/>
         </v-list-item>
 
-        <v-list-item v-else>
-          <v-divider style="margin: 10px 20px"/>
+        <v-list-item class="pa-0 ma-0" v-else>
+          <v-divider style="margin: 3px"/>
         </v-list-item>
       </template>
     </v-navigation-drawer>
@@ -64,8 +63,9 @@ import {getUser} from "@/utils/local";
 import LoadingDialog from "@/components/LoadingDialog.vue";
 import {onMounted, ref} from "vue";
 import {useDisplay} from 'vuetify'
+import ProfilePopup from "@/components/ProfilePopup.vue";
 
-const drawer = ref(false);
+const drawer = ref(true);
 const user = ref({});
 const message = ref(null);
 const loading = ref(false);
@@ -76,7 +76,7 @@ const routes = ref([
   {
     to: '/users',
     title: 'Users',
-    icon: 'mdi-account-group',
+    icon: 'mdi-pencil',
   },
   {
     to: '/account-deletion-requests',
@@ -134,6 +134,20 @@ const getDrawer = () => {
 }
 
 .main-bg {
-  background: linear-gradient(to bottom, #1976d2 300px, white 300px);
+  background: linear-gradient(to bottom, #6200ee 300px, white 300px);
 }
+</style>
+
+<style>
+
+.drawer .v-list-item__content {
+  display: flex !important;
+  width: 100%;
+}
+
+.drawer .v-list-item__content > .v-list-item-title {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
 </style>
